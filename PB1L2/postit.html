@@ -1,0 +1,175 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PB1L2</title>
+
+  <!-- Page styling -->
+  <link rel="stylesheet" href="postit.css" />
+
+  <!-- CryptoJS — used for AES-192 encryption -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+</head>
+
+<body>
+
+  <!-- ============================================================
+       HEADER
+       ============================================================ -->
+  <header class="masthead">
+    <p class="masthead__kicker">A simple posting board with AES-192 security</p>
+    <h1 class="masthead__title">Hehe</h1>
+    <p class="masthead__sub">
+      Every post is shown twice: the original message and an encrypted version.
+    </p>
+  </header>
+
+  <main class="board">
+
+    <!-- ============================================================
+         STEP 1 — USER INFORMATION
+         ============================================================ -->
+    <section id="intake" class="card intake">
+      <div class="card__tab">Enter Your Information</div>
+
+      <form id="intake-form" class="intake__form" autocomplete="off">
+
+        <div class="field">
+          <label for="fullName">Full name</label>
+          <input
+            type="text"
+            id="fullName"
+            name="fullName"
+            placeholder="e.g. Princess Me Mae"
+            required
+          />
+        </div>
+
+        <div class="field">
+          <label for="dob">Date of birth</label>
+          <input type="date" id="dob" name="dob" required />
+        </div>
+
+        <div class="field">
+          <label for="yearLevel">Year level</label>
+          <select id="yearLevel" name="yearLevel" required>
+            <option value="" disabled selected>Select year level</option>
+            <option>Grade 7</option>
+            <option>Grade 8</option>
+            <option>Grade 9</option>
+            <option>Grade 10</option>
+            <option>Grade 11</option>
+            <option>Grade 12</option>
+            <option>1st Year College</option>
+            <option>2nd Year College</option>
+            <option>3rd Year College</option>
+            <option>4th Year College</option>
+            <option>Graduate</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="gender">Gender</label>
+          <select id="gender" name="gender" required>
+            <option value="" disabled selected>Select gender</option>
+            <option>Female</option>
+            <option>Male</option>
+            <option>Non-binary</option>
+            <option>Prefer not to say</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="username">Username</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Name shown on your posts"
+            required
+          />
+        </div>
+
+        <div class="field">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Used as your encryption key"
+            required
+          />
+          <span class="field__hint">
+            Your password is changed to 24 characters and used as your AES-192 key.
+            It stays on this page.
+          </span>
+        </div>
+
+        <button type="submit" class="btn btn--primary">
+          Continue
+        </button>
+
+      </form>
+    </section>
+
+    <!-- ============================================================
+         STEP 2 — CREATE A POST
+         ============================================================ -->
+    <section id="composer" class="card composer hidden">
+      <div class="card__tab">
+        Posting as <span id="composer-username">—</span>
+      </div>
+
+      <label for="caption" class="composer__label">
+        What do you want to say?
+      </label>
+
+      <textarea
+        id="caption"
+        class="composer__textarea"
+        rows="3"
+        maxlength="280"
+        placeholder="Write something..."
+      ></textarea>
+
+      <div class="composer__row">
+        <span id="char-count" class="composer__count">280 characters left</span>
+        <button id="post-btn" type="button" class="btn btn--primary" disabled>
+          Post
+        </button>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         STEP 3 — POSTS
+         ============================================================ -->
+    <section id="thread-wrap" class="thread-wrap hidden">
+
+      <h2 class="thread-heading">Posts</h2>
+
+      <div id="thread" class="thread">
+        <!-- Posts appear here -->
+      </div>
+
+      <p id="empty-state" class="empty-state">
+        No posts yet. Your first post will appear here.
+      </p>
+
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>
+      Postit — your posts stay on this page. Refreshing the page will clear everything.
+    </p>
+  </footer>
+
+  <!-- Page logic -->
+  <script src="postit.js"></script>
+
+</body>
+</html>
+```

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3072-bit RSA Sign Up</title>
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="sursa.css">
+    <!-- Include JSEncrypt Library -->
+    <script src="https://cdn.jsdelivr.net/npm/jsencrypt@latest/bin/jsencrypt.min.js"></script>
+</head>
+<body onload="initCrypto(3072)"> <!-- Initialize 3072-bit keys on load -->
+
+    <div class="container">
+        <!-- Left Panel: The Form -->
+        <div class="panel form-panel">
+            <h2>Enrollment Form (3072-bit RSA)</h2>
+            <form id="signupForm" onsubmit="processForm(event)">
+                
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="dob">Date of Birth</label>
+                    <input type="date" id="dob" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="yearLevel">Year Level</label>
+                    <select id="yearLevel" required>
+                        <option value="">Select Year...</option>
+                        <option value="1st Year">1st Year</option>
+                        <option value="2nd Year">2nd Year</option>
+                        <option value="3rd Year">3rd Year</option>
+                        <option value="4th Year">4th Year</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <select id="gender" required>
+                        <option value="">Select Gender...</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required>
+                </div>
+
+                <button type="submit" id="submitBtn" disabled>Encrypt & Submit</button>
+                <div id="status">Wait bro</div>
+            </form>
+        </div>
+
+        <!-- Right Panel: The Cryptography Results -->
+        <div class="panel results-panel">
+            <h2>RSA Cryptography Results</h2>
+            
+            <div class="output-block">
+                <label>1. Original Data</label>
+                <pre id="originalOutput">To submit is to see.</pre>
+            </div>
+
+            <div class="output-block">
+                <label>2. Encrypted Data (Ciphertext)</label>
+                <pre id="encryptedOutput">To submit is to see.</pre>
+            </div>
+
+            <div class="output-block">
+                <label>3. Decrypted Data (Recovered Plaintext)</label>
+                <pre id="decryptedOutput">To submit is to see.</pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- Link to custom JS -->
+    <script src="sursa.js"></script>
+</body>
+</html>

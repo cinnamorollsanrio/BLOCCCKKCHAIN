@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#fff7fa" />
+    <meta
+      name="description"
+      content="Register, review candidates, cast your vote, and view the final election results."
+    />
+    <title>Vote</title>
+    <link rel="stylesheet" href="../css/vote.css" />
+    <!-- Load the wallet library and shared code before this page script. -->
+    <script src="../script/vendor/ethers.umd.min.js" defer=""></script>
+    <script src="../script/common.js" defer></script>
+    <script src="../script/vote.js" defer></script>
+  </head>
+  <body data-page="vote">
+    <a class="skip-link" href="#mainContent">Skip to content</a>
+    <header class="site-header">
+      <a class="home-mark" href="index.html" aria-label="Go to voter login"
+        ><span aria-hidden="true">✓</span></a
+      >
+      <nav aria-label="Main navigation">
+        <a href="candidates.html">Candidates</a>
+        <a href="vote.html" aria-current="page">Vote</a>
+        <a href="results.html">Results</a>
+        <a href="admin.html" id="adminNav" hidden="">Manage election</a>
+      </nav>
+      <div class="header-account">
+        <span class="state-pill" id="electionStatus" hidden=""
+          >Checking election…</span
+        ><button class="text-button" id="logoutButton" type="button" hidden="">
+          Log out</button
+        ><a
+          class="button button-small button-secondary"
+          href="index.html"
+          id="loginLink"
+          >Log in</a
+        >
+      </div>
+    </header>
+    <!-- Page scripts find elements by these IDs and update their status and controls. -->
+      <main id="mainContent" tabindex="-1">
+      <div
+        id="message"
+        class="message"
+        role="status"
+        aria-live="polite"
+        hidden=""
+      >
+        <span id="messageText"></span>
+      </div>
+      <section id="page-vote" class="page" aria-labelledby="voteHeading">
+        <div class="page-heading">
+          <div>
+            <span class="eyebrow">MAKE YOUR CHOICE</span>
+            <h1 id="voteHeading" class="page-title">Cast your vote</h1>
+            <p class="muted" id="voteSubtitle">
+              Select one candidate. Take your time.
+            </p>
+          </div>
+          <span id="voterEligibility" class="state-pill">Log in to vote</span>
+        </div>
+        <div class="content-grid">
+          <div>
+            <div id="voteGate" class="panel gate-panel">
+              <h2 id="gateTitle">The election is being prepared</h2>
+              <p id="gateText"></p>
+              <a
+                id="gateLink"
+                class="button button-secondary"
+                href="candidates.html"
+                >View candidates</a
+              >
+            </div>
+            <form id="ballotForm" class="panel" hidden="">
+              <fieldset>
+                <legend>Select one candidate</legend>
+                <div id="ballotChoices"></div>
+              </fieldset>
+              <div class="ballot-footer">
+                <p id="selectionText" class="muted">No candidate selected</p>
+                <button
+                  id="reviewVoteButton"
+                  class="button"
+                  type="submit"
+                  disabled=""
+                >
+                  Review vote <span aria-hidden="true">→</span>
+                </button>
+              </div>
+            </form>
+            <div id="voteSuccess" class="panel success-panel" hidden="">
+              <span class="success-mark" aria-hidden="true">✓</span>
+              <h2>Your vote is recorded</h2>
+              <p>
+                Thank you for participating. You have used your one vote for
+                this election.
+              </p>
+              <a href="results.html" class="button button-secondary"
+                >View results status</a
+              >
+            </div>
+          </div>
+          <aside class="panel guide-panel">
+            <span class="section-tag">A QUICK GUIDE</span>
+            <h2>Before you vote</h2>
+            <ol class="guide-steps">
+              <li>
+                <strong>Choose your candidate</strong
+                ><span>You can select one person.</span>
+              </li>
+              <li>
+                <strong>Review your choice</strong
+                ><span>Check the name before confirming.</span>
+              </li>
+              <li>
+                <strong>Confirm in MetaMask</strong
+                ><span>Then wait for “Your vote is recorded.”</span>
+              </li>
+            </ol>
+          </aside>
+        </div>
+      </section>
+    </main>
+    <dialog id="confirmDialog" aria-labelledby="dialogTitle">
+      <div class="dialog-body">
+        <span class="section-tag">REVIEW THIS ACTION</span>
+        <h2 id="dialogTitle">Confirm your vote</h2>
+        <p id="dialogText"></p>
+
+        <div class="dialog-actions">
+          <button
+            id="cancelDialogButton"
+            class="button button-secondary"
+            type="button"
+          >
+            Go back</button
+          ><button id="confirmDialogButton" class="button" type="button">
+            Confirm
+          </button>
+        </div>
+      </div>
+    </dialog>
+  </body>
+</html>

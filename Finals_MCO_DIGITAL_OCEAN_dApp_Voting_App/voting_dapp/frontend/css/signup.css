@@ -1,0 +1,129 @@
+/* Page-specific presentation for signup.html. Imported rules provide shared styles. */
+@import url("common.css");
+
+#registerButton {
+  margin-top: 14px;
+}
+@media (max-width: 1000px) {
+  .site-header {
+    padding: 20px 28px;
+    gap: 26px;
+  }
+  .site-header nav {
+    gap: 20px;
+  }
+  .auth-layout {
+    gap: 40px;
+  }
+  .auth-intro h1 {
+    font-size: 54px;
+  }
+  .header-account {
+    gap: 10px;
+  }
+  .auth-panel {
+    padding: 28px;
+  }
+}
+@media (max-width: 780px) {
+  .site-header {
+    flex-wrap: wrap;
+    gap: 16px 24px;
+  }
+  .header-account {
+    margin-left: auto;
+  }
+  .site-header nav {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    gap: 30px;
+  }
+  .auth-layout {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    max-width: 500px;
+    min-height: 0;
+    padding-top: 28px;
+  }
+  .auth-intro h1 {
+    font-size: 48px;
+    letter-spacing: -1.5px;
+  }
+  .auth-intro > p {
+    font-size: 15px;
+  }
+
+  .intro-steps {
+    display: none;
+  }
+  .auth-intro .eyebrow {
+    margin-bottom: 12px;
+  }
+  .auth-intro h1 br {
+    display: none;
+  }
+  .auth-intro h1 span:before {
+    content: " ";
+  }
+  .auth-intro h1 {
+    margin-bottom: 14px;
+  }
+}
+@media (max-width: 500px) {
+  main {
+    padding: 22px 18px 40px;
+  }
+  .site-header {
+    padding: 16px 20px;
+  }
+  .site-header nav {
+    gap: 22px;
+  }
+  .site-header nav a {
+    font-size: 13px;
+  }
+  .header-account {
+    gap: 6px;
+  }
+  .state-pill {
+    font-size: 11px;
+    padding: 6px 10px;
+    max-width: 160px;
+  }
+  .home-mark {
+    height: 36px;
+    width: 36px;
+  }
+  .panel {
+    padding: 24px;
+  }
+  .auth-panel {
+    padding: 26px;
+  }
+  .auth-panel h2 {
+    font-size: 26px;
+  }
+  .auth-intro h1 {
+    font-size: 38px;
+  }
+  .auth-layout {
+    gap: 18px;
+    padding-top: 12px;
+  }
+  .auth-intro p {
+    margin-bottom: 0;
+  }
+  .section-tag,
+  .eyebrow {
+    font-size: 10px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    transition: none !important;
+  }
+}

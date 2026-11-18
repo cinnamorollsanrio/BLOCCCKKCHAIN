@@ -1,0 +1,207 @@
+/* Page-specific presentation for vote.html. Imported rules provide shared styles. */
+@import url("common.css");
+
+.guide-steps {
+  padding-left: 23px;
+  margin: 24px 0;
+}
+.guide-steps li {
+  padding-left: 8px;
+  margin: 0 0 22px;
+}
+.guide-steps li::marker {
+  color: var(--pink);
+  font-weight: 600;
+}
+.guide-steps strong {
+  display: block;
+}
+
+.guide-steps span {
+  display: block;
+}
+.guide-steps strong {
+  font-weight: 600;
+  font-size: 14px;
+}
+.guide-steps span {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+fieldset {
+  padding: 0;
+  border: 0;
+  margin: 0;
+  min-width: 0;
+}
+legend {
+  font-size: 20px;
+  font-weight: 600;
+  padding: 0;
+  margin-bottom: 8px;
+}
+.ballot-choice {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 18px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  margin-top: 14px;
+  cursor: pointer;
+}
+.ballot-choice:has(input:checked) {
+  background: #fff1f6;
+  border-color: var(--pink);
+  box-shadow: inset 0 0 0 1px var(--pink);
+}
+.ballot-choice input {
+  accent-color: var(--pink);
+  height: 18px;
+  width: 18px;
+  flex-shrink: 0;
+  margin: 0;
+}
+.ballot-choice strong {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+.ballot-choice small {
+  color: var(--muted);
+  font-size: 12px;
+}
+.ballot-footer {
+  padding-top: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.ballot-footer p {
+  font-size: 13px;
+  margin: 0;
+}
+.success-panel {
+  text-align: center;
+  padding: 48px 30px;
+}
+.success-mark {
+  display: grid;
+  place-items: center;
+  height: 58px;
+  width: 58px;
+  border-radius: 50%;
+  background: var(--green-bg);
+  color: var(--green);
+  font-size: 28px;
+  margin: 0 auto 22px;
+}
+.success-panel p {
+  color: var(--muted);
+}
+@media (max-width: 1000px) {
+  .site-header {
+    padding: 20px 28px;
+    gap: 26px;
+  }
+  .site-header nav {
+    gap: 20px;
+  }
+  .header-account {
+    gap: 10px;
+  }
+}
+@media (max-width: 780px) {
+  .site-header {
+    flex-wrap: wrap;
+    gap: 16px 24px;
+  }
+  .header-account {
+    margin-left: auto;
+  }
+  .site-header nav {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    gap: 30px;
+  }
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+  .guide-panel {
+    order: 2;
+  }
+  .page-heading {
+    align-items: flex-start;
+  }
+  .page-title {
+    font-size: 30px;
+  }
+}
+@media (max-width: 500px) {
+  main {
+    padding: 22px 18px 40px;
+  }
+  .site-header {
+    padding: 16px 20px;
+  }
+  .site-header nav {
+    gap: 22px;
+  }
+  .site-header nav a {
+    font-size: 13px;
+  }
+  .header-account {
+    gap: 6px;
+  }
+  .state-pill {
+    font-size: 11px;
+    padding: 6px 10px;
+    max-width: 160px;
+  }
+  .home-mark {
+    height: 36px;
+    width: 36px;
+  }
+  .page-heading {
+    flex-direction: column;
+    gap: 18px;
+    margin-bottom: 24px;
+  }
+  .page-title {
+    font-size: 29px;
+  }
+  .panel {
+    padding: 24px;
+  }
+  .section-tag,
+  .eyebrow {
+    font-size: 10px;
+  }
+  .ballot-choice {
+    padding: 16px 12px;
+    gap: 12px;
+  }
+  .ballot-footer .button {
+    width: 100%;
+  }
+  .dialog-actions .button {
+    flex: 1;
+    padding: 12px;
+  }
+  .dialog-body {
+    padding: 24px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    transition: none !important;
+  }
+}

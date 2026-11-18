@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#fff7fa" />
+    <meta
+      name="description"
+      content="Register, review candidates, cast your vote, and view the final election results."
+    />
+    <title>Results</title>
+    <link rel="stylesheet" href="../css/results.css" />
+    <!-- Load the wallet library and shared code before this page script. -->
+    <script src="../script/vendor/ethers.umd.min.js" defer=""></script>
+    <script src="../script/common.js" defer></script>
+    <script src="../script/results.js" defer></script>
+  </head>
+  <body data-page="results">
+    <a class="skip-link" href="#mainContent">Skip to content</a>
+    <header class="site-header">
+      <a class="home-mark" href="index.html" aria-label="Go to voter login"
+        ><span aria-hidden="true">✓</span></a
+      >
+      <nav aria-label="Main navigation">
+        <a href="candidates.html">Candidates</a>
+        <a href="vote.html">Vote</a>
+        <a href="results.html" aria-current="page">Results</a>
+        <a href="admin.html" id="adminNav" hidden="">Manage election</a>
+      </nav>
+      <div class="header-account">
+        <span class="state-pill" id="electionStatus" hidden=""
+          >Checking election…</span
+        ><button class="text-button" id="logoutButton" type="button" hidden="">
+          Log out</button
+        ><a
+          class="button button-small button-secondary"
+          href="index.html"
+          id="loginLink"
+          >Log in</a
+        >
+      </div>
+    </header>
+    <!-- Page scripts find elements by these IDs and update their status and controls. -->
+      <main id="mainContent" tabindex="-1">
+      <div
+        id="message"
+        class="message"
+        role="status"
+        aria-live="polite"
+        hidden=""
+      >
+        <span id="messageText"></span>
+      </div>
+      <section id="page-results" class="page" aria-labelledby="resultsHeading">
+        <div class="page-heading">
+          <div>
+            <span class="eyebrow">FINAL TABULATION</span>
+            <h1 id="resultsHeading" class="page-title">Election results</h1>
+            <p class="muted">
+              Published in this app after the admin closes voting.
+            </p>
+          </div>
+          <button
+            id="refreshResultsButton"
+            class="button button-secondary"
+            type="button"
+            disabled=""
+          >
+            Refresh results <span aria-hidden="true">↻</span>
+          </button>
+        </div>
+        <div id="resultsLocked" class="panel empty-state">
+          <span class="empty-symbol" aria-hidden="true">◷</span>
+          <h2>Results are not available yet</h2>
+          <p>Come back after voting closes to see the final tabulation.</p>
+          <a href="candidates.html">View candidates →</a>
+        </div>
+        <div id="resultsContent" class="panel" hidden="">
+          <div class="results-heading">
+            <div>
+              <h2 id="resultsPosition"></h2>
+              <p class="muted">
+                Voting is closed. These are the final recorded counts.
+              </p>
+            </div>
+            <div class="total-votes">
+              <span id="totalVotes">0</span><small>confirmed votes</small>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <caption class="sr-only">
+                Final candidate vote counts
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">Candidate</th>
+                  <th scope="col">Votes</th>
+                </tr>
+              </thead>
+              <tbody id="resultsBody"></tbody>
+            </table>
+          </div>
+          <p class="helper">
+            Counts are read from the deployed contract. Blockchain records
+            remain public even while the app hides the tabulation.
+          </p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

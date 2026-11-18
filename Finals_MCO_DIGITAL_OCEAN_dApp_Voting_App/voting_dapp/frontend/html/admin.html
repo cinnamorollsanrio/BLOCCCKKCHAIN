@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#fff7fa" />
+    <meta
+      name="description"
+      content="Register, review candidates, cast your vote, and view the final election results."
+    />
+    <title>Manage election</title>
+    <link rel="stylesheet" href="../css/admin.css" />
+    <!-- Load the wallet library and shared code before this page script. -->
+    <script src="../script/vendor/ethers.umd.min.js" defer=""></script>
+    <script src="../script/common.js" defer></script>
+    <script src="../script/admin.js" defer></script>
+  </head>
+  <body data-page="admin">
+    <a class="skip-link" href="#mainContent">Skip to content</a>
+    <header class="site-header">
+      <a class="home-mark" href="index.html" aria-label="Go to voter login"
+        ><span aria-hidden="true">✓</span></a
+      >
+      <nav aria-label="Main navigation">
+        <a href="candidates.html">Candidates</a>
+        <a href="vote.html">Vote</a>
+        <a href="results.html">Results</a>
+        <a href="admin.html" id="adminNav" hidden="" aria-current="page"
+          >Manage election</a
+        >
+      </nav>
+      <div class="header-account">
+        <span class="state-pill" id="electionStatus" hidden=""
+          >Checking election…</span
+        ><button class="text-button" id="logoutButton" type="button" hidden="">
+          Log out</button
+        ><a
+          class="button button-small button-secondary"
+          href="index.html"
+          id="loginLink"
+          >Log in</a
+        >
+      </div>
+    </header>
+    <!-- Page scripts find elements by these IDs and update their status and controls. -->
+      <main id="mainContent" tabindex="-1">
+      <div
+        id="message"
+        class="message"
+        role="status"
+        aria-live="polite"
+        hidden=""
+      >
+        <span id="messageText"></span>
+      </div>
+      <section id="page-admin" class="page" aria-labelledby="adminHeading">
+        <div class="page-heading">
+          <div>
+            <span class="eyebrow">ELECTORAL ADMIN</span>
+            <h1 id="adminHeading" class="page-title">Manage election</h1>
+            <p class="muted">
+              Prepare the candidates and voters, then open voting.
+            </p>
+          </div>
+          <button
+            id="refreshAdminButton"
+            class="button button-secondary"
+            type="button"
+            disabled=""
+          >
+            Refresh <span aria-hidden="true">↻</span>
+          </button>
+        </div>
+        <div id="adminGate" class="panel gate-panel">
+          <h2>Admin login required</h2>
+          <p>Log in to manage the election.</p>
+          <a class="button button-secondary" href="admin-login.html"
+            >Electoral admin login</a
+          >
+        </div>
+        <div id="adminContent" class="content-grid" hidden="">
+          <div class="stack">
+            <div class="panel">
+              <div class="panel-heading">
+                <h2>Candidates</h2>
+                <span id="adminCandidateCount" class="count-label"
+                  >0 added</span
+                >
+              </div>
+              <form id="candidateForm">
+                <label for="candidateName">Candidate full name</label
+                ><input
+                  id="candidateName"
+                  name="candidateName"
+                  required=""
+                  maxlength="80"
+                  placeholder="e.g. Juan Dela Cruz"
+                  autocomplete="off"
+                /><label for="candidatePositionInput">Position</label
+                ><input
+                  id="candidatePositionInput"
+                  name="candidatePosition"
+                  required=""
+                  maxlength="80"
+                  placeholder="e.g. Student Council President"
+                  autocomplete="off"
+                />
+                <p class="helper">
+                  One election covers one position. Check spelling; candidates
+                  cannot be edited or removed.
+                </p>
+                <button
+                  id="addCandidateButton"
+                  class="button"
+                  type="submit"
+                  disabled=""
+                >
+                  Add candidate <span aria-hidden="true">+</span>
+                </button>
+              </form>
+              <div id="adminCandidateList" class="simple-list"></div>
+            </div>
+            <div class="panel voter-register">
+              <div class="panel-heading">
+                <h2>Voter register</h2>
+                <span id="authorizedCount" class="count-label">0 authorized</span>
+              </div>
+              <h3 class="list-title">Registered wallets</h3>
+              <div id="registeredVoterList" class="simple-list"></div>
+            </div>
+          </div>
+          <aside class="panel guide-panel">
+            <span class="section-tag">ELECTION CONTROL</span>
+            <h2>Voting process</h2>
+            <div class="phase-track">
+              <span id="phaseSetup">1 · Setup</span
+              ><span id="phaseOpen">2 · Open</span
+              ><span id="phaseClosed">3 · Closed</span>
+            </div>
+            <p id="adminControlTip" class="muted"></p>
+            <button
+              id="startElectionButton"
+              class="button full"
+              type="button"
+              disabled=""
+            >
+              Start voting</button
+            ><button
+              id="endElectionButton"
+              class="button button-danger full"
+              type="button"
+              disabled=""
+            >
+              Close voting
+            </button>
+            <div class="inline-note">
+              Add at least two candidates and authorize at least one voter
+              before starting. Once voting starts, setup is locked. Closing
+              voting is permanent.
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+    <dialog id="confirmDialog" aria-labelledby="dialogTitle">
+      <div class="dialog-body">
+        <span class="section-tag">REVIEW THIS ACTION</span>
+        <h2 id="dialogTitle">Confirm your vote</h2>
+        <p id="dialogText"></p>
+
+        <div class="dialog-actions">
+          <button
+            id="cancelDialogButton"
+            class="button button-secondary"
+            type="button"
+          >
+            Go back</button
+          ><button id="confirmDialogButton" class="button" type="button">
+            Confirm
+          </button>
+        </div>
+      </div>
+    </dialog>
+  </body>
+</html>

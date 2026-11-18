@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Voting setup</title>
+    <style>
+      :root {
+        --bg: #fff7fa;
+        --surface: #fff;
+        --pink: #a3295b;
+        --pink-dark: #852047;
+        --pink-pale: #fbe9f0;
+        --ink: #35232d;
+        --muted: #725e68;
+        --line: #ead6df;
+        --green: #235943;
+        --green-bg: #e8f4ed;
+        --red: #a52a3c;
+        --red-bg: #fff0f1;
+        --shadow: 0 14px 42px rgba(104, 43, 67, 0.045);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font:
+          15px/1.6 "Segoe UI",
+          Arial,
+          sans-serif;
+      }
+      a {
+        color: var(--pink);
+        text-underline-offset: 4px;
+      }
+      a:hover {
+        color: var(--pink-dark);
+      }
+
+      a {
+        touch-action: manipulation;
+      }
+
+      a:focus-visible {
+        outline: 3px solid #b64b76;
+        outline-offset: 4px;
+      }
+      h1,
+      h2,
+      p {
+        margin-top: 0;
+      }
+      h2 {
+        font-size: 22px;
+        line-height: 1.3;
+        font-weight: 650;
+        margin-bottom: 12px;
+      }
+      p {
+        margin-bottom: 18px;
+      }
+      .muted {
+        color: var(--muted);
+      }
+      .site-header {
+        min-height: 94px;
+        max-width: 1360px;
+        padding: 20px 52px;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        gap: 44px;
+        border-bottom: 1px solid var(--line);
+      }
+      .home-mark {
+        height: 42px;
+        width: 42px;
+        flex-shrink: 0;
+        border: 1px solid #d99ab4;
+        border-radius: 12px;
+        background: var(--pink-pale);
+        display: grid;
+        place-items: center;
+        text-decoration: none;
+        transform: rotate(-5deg);
+      }
+      main {
+        max-width: 1184px;
+        margin: 0 auto;
+        padding: 30px 32px 56px;
+        min-height: calc(100vh - 175px);
+      }
+      .eyebrow {
+        display: block;
+        font-size: 11px;
+        letter-spacing: 1.8px;
+        font-weight: 700;
+        color: var(--pink);
+        margin-bottom: 20px;
+      }
+      .panel {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 30px;
+        box-shadow: var(--shadow);
+      }
+      .helper {
+        font-size: 12px;
+        color: var(--muted);
+        margin: 12px 0 18px;
+      }
+      .page-title {
+        font-size: 36px;
+        line-height: 1.2;
+        letter-spacing: -1px;
+        font-weight: 650;
+        margin: 0 0 12px;
+      }
+      .inline-note {
+        padding: 14px 16px;
+        background: #fff1f6;
+        border-radius: 8px;
+        font-size: 13px;
+        color: #70465a;
+        line-height: 1.6;
+      }
+      .panel .inline-note:last-child {
+        margin-bottom: 0;
+      }
+      .site-footer {
+        max-width: 1360px;
+        margin: auto;
+        border-top: 1px solid var(--line);
+        padding: 24px 52px;
+        display: flex;
+        justify-content: space-between;
+        gap: 18px;
+        flex-wrap: wrap;
+        color: var(--muted);
+        font-size: 11px;
+      }
+      .site-footer a {
+        color: var(--muted);
+      }
+      .setup-page {
+        max-width: 780px;
+      }
+      .setup-page h1 {
+        margin-top: 25px;
+      }
+      .setup-page code {
+        font-size: 13px;
+        overflow-wrap: anywhere;
+        background: #f8eaf0;
+        border-radius: 4px;
+        padding: 2px 5px;
+      }
+      .setup-page li {
+        margin-bottom: 15px;
+      }
+      .setup-page pre {
+        padding: 18px;
+        border-radius: 10px;
+        background: #f8eaf0;
+        overflow: auto;
+      }
+      .setup-page pre code {
+        padding: 0;
+      }
+      .setup-page .panel {
+        margin: 24px 0;
+      }
+      @media (max-width: 1000px) {
+        .site-header {
+          padding: 20px 28px;
+          gap: 26px;
+        }
+      }
+      @media (max-width: 780px) {
+        .site-header {
+          flex-wrap: wrap;
+          gap: 16px 24px;
+        }
+        .page-title {
+          font-size: 30px;
+        }
+        .site-footer {
+          padding: 24px 28px;
+        }
+      }
+      @media (max-width: 500px) {
+        main {
+          padding: 22px 18px 40px;
+        }
+        .site-header {
+          padding: 16px 20px;
+        }
+        .home-mark {
+          height: 36px;
+          width: 36px;
+        }
+        .page-title {
+          font-size: 29px;
+        }
+        .panel {
+          padding: 24px;
+        }
+
+        .eyebrow {
+          font-size: 10px;
+        }
+        .site-footer {
+          padding: 20px;
+          gap: 10px;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        * {
+          transition: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="home-mark" href="index.html" aria-label="Return to voter login"
+        >✓</a
+      ><a href="index.html">← Back to the application</a>
+    </header>
+    <main class="setup-page">
+      <span class="eyebrow">DEPLOYMENT GUIDE</span>
+      <h1 class="page-title">Connect your election</h1>
+      <p class="muted">
+        The interface is ready. A deployed contract is required to register
+        voters and record votes.
+      </p>
+      <section class="panel">
+        <h2>1. Deploy the contract</h2>
+        <ol>
+          <li>
+            Open
+            <a
+              href="https://remix.ethereum.org"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Remix</a
+            >
+            and create <code>CampusVoting.sol</code> using the source in the
+            downloaded project’s <code>contracts</code> folder.
+          </li>
+          <li>
+            Compile with Solidity <code>0.8.24</code>. The version-pinned
+            OpenZeppelin import downloads automatically in Remix.
+          </li>
+          <li>
+            Open MetaMask, select the intended test network (Sepolia by
+            default), and select your admin account. It needs test ETH.
+          </li>
+          <li>
+            In Remix’s Deploy &amp; Run panel, select the injected MetaMask
+            provider. Confirm the displayed network and account, then deploy
+            <code>CampusVoting</code>. Approve the transaction in MetaMask.
+          </li>
+          <li>
+            Copy the deployed contract address. The wallet that deployed it is
+            the preassigned admin account.
+          </li>
+        </ol>
+      </section>
+      <section class="panel">
+        <h2>2. Add the contract address</h2>
+        <p>
+          Open <code>frontend/script/common.js</code> and replace the
+          placeholder on the first configuration line:
+        </p>
+        <pre><code>const contractAddress = "YOUR_DEPLOYED_CONTRACT_ADDRESS";</code></pre>
+        <p>
+          Record the same address in
+          <code>docs/deployed-contract-address.txt</code>. Use the updated
+          contract included in this project; the original instructor contract
+          lacks the registration and permanent-close functions used by this
+          interface.
+        </p>
+        <p class="helper">
+          If you use another test network, also update <code>chainId</code>,
+          <code>networkName</code>, and <code>rpcUrl</code> in script/common.js.
+          Do not use mainnet or real ETH for this coursework.
+        </p>
+      </section>
+      <section class="panel">
+        <h2>3. Run the frontend</h2>
+        <p>
+          Open the project in VS Code. Right-click
+          <code>frontend/html/index.html</code> and choose
+          <strong>Open with Live Server</strong>, or run:
+        </p>
+        <pre><code>npx serve frontend</code></pre>
+        <p>
+          If using the command above, open /html/index.html at the printed
+          address. Use a desktop browser with MetaMask installed. Public pages
+          read the blockchain without a wallet connection. Registration and
+          voting require MetaMask.
+        </p>
+      </section>
+      <section class="panel">
+        <h2>4. Test with three accounts</h2>
+        <ol>
+          <li>
+            Admin: add Juan Dela Cruz and Maria Santos for the same position.
+          </li>
+          <li>Accounts 2 and 3: sign up with their voter wallets.</li>
+          <li>
+            Admin: verify and authorize both voter addresses, then start voting.
+          </li>
+          <li>Account 2: log in, select Juan, review, and confirm the vote.</li>
+          <li>Account 3: log in and vote for Maria.</li>
+          <li>
+            Try voting again with Account 2. The app and contract must prevent
+            it.
+          </li>
+          <li>
+            Admin: close voting. Verify the results show one vote each and two
+            votes total. Confirm that reopening is blocked.
+          </li>
+        </ol>
+        <p class="inline-note">
+          Votes and wallet addresses are public blockchain records. This simple
+          classroom project does not implement a secret ballot. The admin must
+          verify one real student per approved wallet.
+        </p>
+      </section>
+      <p>
+        For the full checklist, limitations, and contribution table, see
+        <code>README.md</code> in the project.
+      </p>
+    </main>
+    <footer class="site-footer">
+      <span>One wallet. One confirmed vote.</span
+      ><a href="index.html">Return to the application</a>
+    </footer>
+  </body>
+</html>

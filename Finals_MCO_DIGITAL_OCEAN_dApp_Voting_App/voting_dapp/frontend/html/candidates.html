@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#fff7fa" />
+    <meta
+      name="description"
+      content="Register, review candidates, cast your vote, and view the final election results."
+    />
+    <title>Candidates</title>
+    <link rel="stylesheet" href="../css/candidates.css" />
+    <!-- Load the wallet library and shared code before this page script. -->
+    <script src="../script/vendor/ethers.umd.min.js" defer=""></script>
+    <script src="../script/common.js" defer></script>
+    <script src="../script/candidates.js" defer></script>
+  </head>
+  <body data-page="candidates">
+    <a class="skip-link" href="#mainContent">Skip to content</a>
+    <header class="site-header">
+      <a class="home-mark" href="index.html" aria-label="Go to voter login"
+        ><span aria-hidden="true">✓</span></a
+      >
+      <nav aria-label="Main navigation">
+        <a href="candidates.html" aria-current="page">Candidates</a>
+        <a href="vote.html">Vote</a>
+        <a href="results.html">Results</a>
+        <a href="admin.html" id="adminNav" hidden="">Manage election</a>
+      </nav>
+      <div class="header-account">
+        <span class="state-pill" id="electionStatus" hidden=""
+          >Checking election…</span
+        ><button class="text-button" id="logoutButton" type="button" hidden="">
+          Log out</button
+        ><a
+          class="button button-small button-secondary"
+          href="index.html"
+          id="loginLink"
+          >Log in</a
+        >
+      </div>
+    </header>
+    <!-- Page scripts find elements by these IDs and update their status and controls. -->
+      <main id="mainContent" tabindex="-1">
+      <div
+        id="message"
+        class="message"
+        role="status"
+        aria-live="polite"
+        hidden=""
+      >
+        <span id="messageText"></span>
+      </div>
+      <section
+        id="page-candidates"
+        class="page"
+        aria-labelledby="candidatesHeading"
+      >
+        <div class="page-heading">
+          <div>
+            <span class="eyebrow">MAKE AN INFORMED CHOICE</span>
+            <h1 id="candidatesHeading" class="page-title">
+              Meet the candidates
+            </h1>
+            <p class="muted">Review the list before you cast your vote.</p>
+          </div>
+          <a class="button button-secondary" href="vote.html"
+            >Go to voting <span aria-hidden="true">→</span></a
+          >
+        </div>
+        <div id="candidatePosition" class="position-label"></div>
+        <div id="candidateList" class="candidate-grid"></div>
+        <div class="bottom-note">
+          <span aria-hidden="true">ⓘ</span> You can vote for one candidate in
+          this election. Vote counts appear here after voting closes.
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
